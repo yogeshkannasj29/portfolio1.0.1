@@ -1,0 +1,487 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #007bff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background: var(--bg-color);
+  z-index: 1000;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  animation: slideInLeft 1s ease;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--accent-color);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  position: relative;
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  background: var(--text-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-color);
+    width: 200px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav.open {
+    transform: translateX(0);
+  }
+
+  .nav ul {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.theme-palette {
+  position: relative;
+}
+
+.paint-icon {
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.color-options {
+  position: absolute;
+  top: 130%;
+  right: 0;
+  display: flex;
+  gap: 0.4rem;
+  background: #fff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.theme-palette:hover .color-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.color-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #eee;
+  transition: transform 0.2s ease;
+}
+
+.color-btn:hover {
+  transform: scale(1.2);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/** section css **/
+.hero-pencil {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--bg-color); /* keeps your theme */
+  color: var(--text-color);
+  transition: background 0.4s ease, color 0.4s ease;
+
+  /* Lined background */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05),
+    /* thin grey line */ rgba(0, 0, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 30px /* spacing between lines */
+  );
+}
+
+.pencil-wrapper {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.pencil-icon {
+  width: 40px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-10deg);
+  animation: wiggle 2s ease-in-out infinite;
+  color: var(--accent-color);
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(10deg);
+  }
+}
+
+.draw-text {
+  width: 100%;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.freestyle-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 5s ease forwards;
+}
+
+.path-2 {
+  animation-delay: 0.3s;
+  opacity: 0.8;
+}
+.path-3 {
+  animation-delay: 0.6s;
+  opacity: 0.6;
+}
+.path-4 {
+  animation-delay: 0.9s;
+  opacity: 0.5;
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.draw-role {
+  font-size: 2.2rem;
+  margin-top: 2rem;
+  font-weight: bold;
+  opacity: 0;
+  animation: fadeIn 2s ease 1.5s forwards;
+  color: var(--accent-color);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.freestyle-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 5s ease;
+}
+
+.celebration-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #f5a623;
+  opacity: 0.9;
+  border-radius: 3px;
+  animation: spiralFall linear forwards;
+}
+
+@keyframes spiralFall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x-move), 100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.section {
+  display: none; /* hide all sections by default */
+  height: 80vh;
+  padding: 50px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section.active {
+  display: flex; /* show only the active section */
+}
+
+.projects-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.project-card {
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-card h3 {
+  margin: 10px 0 5px;
+}
+
+.project-card p {
+  padding: 0 10px 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.profile-pic img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about-details {
+  flex: 1;
+  min-width: 250px;
+}
+
+.about-details h3 {
+  margin-top: 15px;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.skills-list li {
+  background: var(--accent-color);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.profile-pic.animated img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(0, 123, 255, 1);
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .contact-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+  }
+
+  .contact-links a:hover {
+    color: #0077b5; /* LinkedIn blue, or you can use accent color */
+  }
+
+  .contact-links i {
+    font-size: 24px;
+  }
