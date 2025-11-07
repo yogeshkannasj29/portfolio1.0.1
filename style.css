@@ -412,7 +412,6 @@ body {
   animation: glow 2s ease-in-out infinite alternate;
 }
 
-
 @keyframes pulse {
   0%,
   100% {
@@ -460,28 +459,35 @@ body {
   }
 }
 
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
 
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-  }
+.contact-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
 
-  .contact-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.3s;
-  }
+.contact-links a:hover {
+  color: #0077b5; /* LinkedIn blue, or you can use accent color */
+}
 
-  .contact-links a:hover {
-    color: #0077b5; /* LinkedIn blue, or you can use accent color */
-  }
+.contact-links i {
+  font-size: 24px;
+}
 
-  .contact-links i {
-    font-size: 24px;
-  }
+.responsive-img {
+  width: 100%;
+  height: auto;
+  max-width: 600px; /* optional: keeps it from growing too large on desktop */
+  display: block;
+  margin: 0 auto;
+}
